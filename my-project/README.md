@@ -1,75 +1,66 @@
-# React + TypeScript + Vite
+# ShopZone — E-Commerce Storefront & Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A production-grade E-Commerce platform built with React, TypeScript, TanStack Query, React Hook Form, Zod, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Public Storefront**: Browse products, filter by category, view product details
+- **User Authentication**: Register/Login with JWT, session persisted in localStorage
+- **Shopping Cart**: Persistent cart with quantity management
+- **Checkout**: Multi-step form (Shipping → Payment → Review) with strict validation
+- **Order History**: Users can view their past orders
+- **Admin Dashboard**: Manage products, orders, and categories with full CRUD
+- **Role-Based Access Control**: Admin and User routes are fully protected
 
-## React Compiler
+## Admin Credentials (for grading)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+Email:    admin@ecomus.com
+Password: Admin@1234
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- React 19 + TypeScript
+- React Router v6
+- TanStack Query (React Query) — caching & data fetching
+- React Hook Form + Zod — form management & validation
+- Axios 1.14.0 — HTTP client (safe version)
+- Tailwind CSS v4 — styling
+- React Hot Toast — notifications
+- Lucide React — icons
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Local Setup
+
+```bash
+# 1. Clone the repo
+git clone <your-repo-url>
+cd my-project
+
+# 2. Install dependencies
+npm install
+
+# 3. Start development server
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173)
+
+## API
+
+Backend: `https://e-commas-apis-production.up.railway.app`  
+Docs: [Swagger UI](https://e-commas-apis-production.up.railway.app/api-docs/#/)
+
+## Deployment
+
+Deployed on Vercel/Netlify. Add a `_redirects` file (Netlify) or `vercel.json` for SPA routing:
+
+**Netlify** (`public/_redirects`):
+```
+/* /index.html 200
+```
+
+**Vercel** (`vercel.json`):
+```json
+{ "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
 ```
